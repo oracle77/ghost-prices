@@ -1,0 +1,1 @@
+{"hooks":[{"actions":[{"command":"npm run lint","description":"Run oxlint over the project","type":"command"}],"description":"Lint changed source files on save","name":"on-save-format","trigger":{"event":"fileEdited","paths":["src/**/*.ts","src/**/*.tsx"]}}],"version":1}
