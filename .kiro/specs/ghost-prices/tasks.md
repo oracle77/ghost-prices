@@ -43,12 +43,24 @@
 ## Phase 5 — Verify & ship (build day 1)
 
 - [x] 18. `npm run build` passes (tsc + Vite)
-- [ ] 19. Smoke-test the production build locally (`vite preview` + Playwright
-  screenshot) — pending
-- [ ] 20. Push to GitHub, confirm Actions deploy, verify live URL
-  `https://oracle77.github.io/ghost-prices/`
+- [x] 19. Smoke-test the production build (Playwright Firefox 1.55 vs live
+  URL, 2026-11-18): title/header OK, 8 cards, chart SVG + slider render,
+  0 page errors — screenshots in `../qa/` (build folder, not the repo)
+- [x] 20. Pushed to GitHub; GitHub Pages live at
+  `https://oracle77.github.io/ghost-prices/` (HTTP 200, status `built`).
+  Deployed via `gh-pages` branch (legacy branch source) — see note below.
 - [ ] 21. Demo video (Dec 1–2) + Devpost draft (Dec 3) — owner: user/parent
   (Devpost + YouTube accounts required; out of scope for this VM agent)
+
+## Deploy note (2026-11-18)
+
+- The `gh` OAuth token lacks the `workflow` scope, so
+  `.github/workflows/deploy.yml` could **not** be pushed (GitHub rejects
+  workflow files from this token). The file exists in the local tree only.
+  Two options for auto-deploy: (a) add the workflow via the GitHub web UI,
+  or (b) keep deploying by pushing `dist/` to the `gh-pages` branch
+  (current method — Pages source is set to `gh-pages`, legacy build type).
+  After any code change, rebuild and re-push the `gh-pages` branch.
 
 ## Notes
 
