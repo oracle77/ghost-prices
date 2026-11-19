@@ -148,6 +148,7 @@ export default function App() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="🔍 Search a complex, dong, or city — try “Banpo”, “헬리오”, “Busan”…"
+              aria-label="Search a complex, dong, or city"
               className="min-w-64 flex-1 rounded-xl border border-violet-400/40 bg-[#1b1030] px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:border-emerald-300 focus:outline-none"
             />
             <button
@@ -205,6 +206,15 @@ export default function App() {
                 <article
                   key={c.id}
                   onClick={() => pickComplex(c.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      pickComplex(c.id);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${c.nameEn} — latest ${formatPrice(lp.price)}, ${st.label}`}
                   className={`cursor-pointer rounded-2xl border p-4 transition hover:-translate-y-0.5 ${
                     c.id === selectedId
                       ? 'border-emerald-300/70 bg-[#1b1030] shadow-[0_0_30px_rgba(52,211,153,0.15)]'
@@ -228,6 +238,12 @@ export default function App() {
                         toggleWatch(c.id);
                       }}
                       title={watched ? 'Remove from watchlist' : 'Add to watchlist'}
+                      aria-label={
+                        watched
+                          ? `Remove ${c.nameEn} from watchlist`
+                          : `Add ${c.nameEn} to watchlist`
+                      }
+                      aria-pressed={watched}
                       className="rounded-lg border border-violet-400/40 px-2 py-1 text-sm"
                     >
                       {watched ? '★' : '☆'}
@@ -294,6 +310,7 @@ export default function App() {
                   setAreaIdx(i);
                   setSliderIdx(0);
                 }}
+                aria-pressed={i === areaIdx}
                 className={`rounded-xl border px-4 py-2 text-sm font-semibold ${
                   i === areaIdx
                     ? 'border-emerald-300 bg-emerald-400/15 text-emerald-300'
@@ -325,7 +342,7 @@ export default function App() {
                     dataKey="month"
                     tick={{ fill: '#94a3b8', fontSize: 11 }}
                     tickFormatter={(m: string) => m.slice(2)}
-                    interval={2}
+                    minTickGap={30}
                   />
                   <YAxis
                     tick={{ fill: '#94a3b8', fontSize: 11 }}
@@ -379,6 +396,7 @@ export default function App() {
               max={series.history.length - 1}
               value={sliderIdx}
               onChange={(e) => setSliderIdx(Number(e.target.value))}
+              aria-label="Ghost of Prices Past — choose a past month"
               className="mt-4 w-full accent-orange-500"
             />
             <div className="flex justify-between text-xs text-slate-500">
@@ -422,6 +440,7 @@ export default function App() {
               </h3>
               <button
                 onClick={() => setShowSchools((v) => !v)}
+                aria-expanded={showSchools}
                 className="rounded-lg border border-violet-400/40 px-3 py-1.5 text-sm"
               >
                 {showSchools ? 'Hide schools' : 'Show schools'}

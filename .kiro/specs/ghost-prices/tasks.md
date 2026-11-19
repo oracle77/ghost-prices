@@ -52,6 +52,18 @@
 - [ ] 21. Demo video (Dec 1–2) + Devpost draft (Dec 3) — owner: user/parent
   (Devpost + YouTube accounts required; out of scope for this VM agent)
 
+## Polish pass (2026-11-19)
+
+- [x] 22. Live QA (Playwright 1.55, desktop 1280×900 + mobile 390×844):
+  27/27 checks passed, 0 console/page/request errors — script `../qa/qa_polish.py`
+- [x] 23. Fixes: Dongtan city label duplication; mobile X-axis label overlap
+  (`minTickGap`); keyboard + aria accessibility on cards/controls; OG/Twitter
+  meta + generated `public/og.png`; `TESTING.md` judge walkthrough
+- [x] 24. Rebuilt, lint-clean, re-verified against local preview, re-deployed
+  to `gh-pages`, live QA re-run — see `../STATUS.md`
+- [ ] 25. (Not done) More complexes — skipped deliberately: new complexes need
+  verified 24-month medians; inventing data would break the data-honesty stance
+
 ## Deploy note (2026-11-18)
 
 - The `gh` OAuth token lacks the `workflow` scope, so

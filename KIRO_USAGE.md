@@ -68,6 +68,34 @@ committed in `/.kiro` at the repo root (this directory is **not** in
 - **Kiro credits:** not claimed. The 4,000-credit request form requires a
   Kiro user ID, which does not exist yet for this project.
 
+## Polish pass — 2026-11-19 (by hand, no Kiro AI calls)
+
+The polish stage (PLAN.md 11-19~26) was also done by hand, following the
+same spec-driven workflow — the Kiro CLI is still **not logged in**, so no
+Kiro AI agent calls were used here either:
+
+- **Live QA first:** Playwright 1.55 + Firefox vs the live URL, desktop
+  1280×900 and mobile 390×844 — **27/27 checks passed** (render, search,
+  card select, area tabs, time slider, watchlist add/remove, watched-only
+  filter, empty search, school toggle, keyboard tab, mobile overflow,
+  0 console/page/request errors). Script: `../qa/qa_polish.py` (build folder).
+- **Fixes from that QA:**
+  - Data: Dongtan complex showed "Hwaseong-si, Hwaseong" (duplicated city) —
+    corrected to `Gyeonggi-do`.
+  - Mobile chart: X-axis month labels overlapped into one unreadable string
+    on 390 px screens — replaced fixed `interval={2}` with `minTickGap={30}`
+    so Recharts thins labels responsively.
+  - Accessibility (judging criteria mention it): complex cards are now
+    keyboard-operable (`role="button"`, `tabIndex`, Enter/Space), and the
+    search, slider, area tabs, watch star, and school toggle have
+    `aria-label` / `aria-pressed` / `aria-expanded`.
+  - Social sharing: Open Graph + Twitter Card meta in `index.html`, and a
+    generated `public/og.png` (1200×630, PIL-drawn ghost card).
+  - Docs: `TESTING.md` — 2-minute judge walkthrough + QA record.
+- **What was deliberately NOT done:** no new complexes. Adding complexes
+  would need verified 24-month median series; inventing them would break the
+  data-honesty stance, so the 8 verified complexes stay as-is.
+
 ## Bottom line
 
 Kiro shaped this project as a **method** (spec → design → tasks → hooks)

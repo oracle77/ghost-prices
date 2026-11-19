@@ -228,7 +228,7 @@ export const COMPLEXES: Complex[] = [
     nameEn: 'Dongtan Station Central Xi',
     dong: 'Yeongcheon-dong',
     gu: 'Hwaseong-si',
-    city: 'Hwaseong',
+    city: 'Gyeonggi-do',
     yearBuilt: 2020,
     households: 1238,
     areas: [
